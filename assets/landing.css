@@ -96,6 +96,23 @@ body.alevia::before,
 .alevia .philosophy-copy p { max-width: var(--alevia-text-width); }
 .alevia .philosophy-copy blockquote { margin-block: 2rem; padding-left: 1.5rem; border-left: 1px solid var(--alevia-gold); color: var(--alevia-gold-ink); font-family: var(--alevia-font-display); font-size: clamp(1.875rem, 2.5vw, 2.25rem); line-height: 1.2; }
 
+/* Brand name: three meanings, immediately after the philosophy. */
+.alevia .brand-section { padding-top: 0; }
+.alevia .brand-section > .alevia-container { border-top: 1px solid var(--alevia-line); padding-top: clamp(2rem, 4vw, 4rem); }
+.alevia .brand-intro { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 7.5rem; align-items: start; }
+.alevia .brand-heading > span { display: block; color: var(--alevia-gold-ink); }
+.alevia .brand-intro > p { max-width: var(--alevia-text-width); padding-top: .5rem; }
+.alevia .brand-meanings { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 3rem; margin: 3.5rem 0; }
+.alevia .brand-meaning { min-width: 0; border-top: 1px solid var(--alevia-line); padding-top: 1.5rem; }
+.alevia .brand-meaning dt { display: flex; align-items: baseline; gap: .75rem; margin-bottom: 1rem; }
+.alevia .brand-root { font-family: var(--alevia-font-display); font-size: clamp(2.5rem, 3.2vw, 3rem); line-height: 1.1; color: var(--alevia-gold-ink); }
+.alevia .brand-language { font-size: 12px; color: var(--alevia-muted); font-style: italic; }
+.alevia .brand-meaning dd { margin: 0; font-size: 16px; line-height: 1.7; }
+.alevia .brand-syllable { white-space: nowrap; color: var(--alevia-gold-ink); font-weight: 500; }
+.alevia .brand-finale { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 7.5rem; border-top: 1px solid var(--alevia-line); padding-top: 2.5rem; align-items: start; }
+.alevia .brand-finale > p:first-child { max-width: var(--alevia-text-width); }
+.alevia .brand-conclusion { font-family: var(--alevia-font-display); font-size: clamp(1.875rem, 2.5vw, 2.25rem); line-height: 1.2; color: var(--alevia-gold-ink); }
+
 /* Three equally weighted directions with six complete programs. */
 .alevia .rituals-section { background: var(--alevia-surface); }
 .alevia .rituals-section > .alevia-container > h2 { margin-bottom: 3rem; }
@@ -160,7 +177,8 @@ body.alevia::before,
   .alevia .hero-composition { gap: 2.5rem; }
   .alevia .hero-copy { padding-top: 0; }
   .alevia .hero-eyebrow { font-size: 11px; gap: .75rem; }
-  .alevia .philosophy-grid, .alevia .service-grid, .alevia .visit-grid { gap: 4rem; }
+  .alevia .philosophy-grid, .alevia .brand-intro, .alevia .brand-finale, .alevia .service-grid, .alevia .visit-grid { gap: 4rem; }
+  .alevia .brand-meanings { gap: 2rem; }
   .alevia .alevia-rituals { gap: 1.5rem; }
   .alevia .alevia-subheading { font-size: 32px; }
 }
@@ -182,7 +200,8 @@ body.alevia::before,
   .alevia .hero-figure { width: 72%; justify-self: end; }
   .alevia .hero-baseline { align-items: flex-start; padding-block: 2rem; }
   .alevia .hero-baseline > .alevia-caption { max-width: 24rem; padding-top: .75rem; }
-  .alevia .philosophy-grid, .alevia .service-grid, .alevia .visit-grid { gap: 3rem; }
+  .alevia .philosophy-grid, .alevia .brand-intro, .alevia .brand-finale, .alevia .service-grid, .alevia .visit-grid { gap: 3rem; }
+  .alevia .brand-meanings { gap: 1.5rem; margin-block: 3rem; }
   .alevia .philosophy-grid { grid-template-columns: minmax(0, .85fr) minmax(0, 1fr); }
   .alevia .philosophy-signature { margin-top: 2rem; }
   .alevia .alevia-rituals { grid-template-columns: minmax(0, 1fr); gap: 3rem; }
@@ -219,7 +238,12 @@ body.alevia::before,
   .alevia .section-kicker { margin-bottom: 1.5rem; }
   .alevia .section-kicker .alevia-eyebrow { font-size: 11px; }
   .alevia .section-index { font-size: 11px; }
-  .alevia .philosophy-grid, .alevia .service-grid { grid-template-columns: minmax(0, 1fr); gap: 2rem; }
+  .alevia .philosophy-grid, .alevia .brand-intro, .alevia .brand-finale, .alevia .service-grid { grid-template-columns: minmax(0, 1fr); gap: 2rem; }
+  .alevia .brand-intro > p { padding-top: 0; }
+  .alevia .brand-meanings { grid-template-columns: minmax(0, 1fr); gap: 2rem; margin-block: 2rem; }
+  .alevia .brand-meaning dt { margin-bottom: .75rem; }
+  .alevia .brand-finale { padding-top: 2rem; gap: 1.5rem; }
+  .alevia .brand-conclusion { font-size: 30px; }
   .alevia .philosophy-heading h2 { max-width: 9.5em; }
   .alevia .philosophy-signature { display: none; }
   .alevia .philosophy-copy { padding-top: 0; }
