@@ -1,0 +1,93 @@
+/* Version 02: full-width video hero. Version 01 keeps its original composition. */
+.alevia-v2 .hero--video {
+  position: relative;
+  isolation: isolate;
+  padding-top: 0;
+  background: var(--alevia-stone);
+  overflow: hidden;
+}
+.alevia-v2 .hero-video-backdrop,
+.alevia-v2 .hero-video-wash { position: absolute; inset: 0; pointer-events: none; }
+.alevia-v2 .hero-video-backdrop { z-index: -2; }
+.alevia-v2 .hero-video-poster,
+.alevia-v2 .hero-video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+.alevia-v2 .hero-video { opacity: 0; transition: opacity 700ms ease; }
+.alevia-v2 .hero--video.has-video-frame .hero-video { opacity: 1; }
+.alevia-v2 .hero-video-wash {
+  z-index: -1;
+  background:
+    linear-gradient(0deg, rgba(253, 251, 247, .8) 0%, rgba(253, 251, 247, 0) 23%),
+    linear-gradient(90deg, rgba(253, 251, 247, .96) 0%, rgba(253, 251, 247, .9) 25%, rgba(253, 251, 247, .66) 46%, rgba(253, 251, 247, .14) 72%, rgba(253, 251, 247, .03) 100%);
+}
+.alevia-v2 .hero-video-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: clamp(700px, calc(100svh - 112px), 980px);
+}
+.alevia-v2 .hero-copy { width: min(100%, 40rem); padding-block: clamp(3.5rem, 7vh, 7rem) 3.5rem; }
+.alevia-v2 .hero-title { font-size: clamp(4rem, 6.3vw, 6rem); }
+.alevia-v2 .hero-intro { max-width: 29rem; }
+.alevia-v2 .hero-description { color: var(--alevia-text); }
+.alevia-v2 .hero-baseline { border-top: 1px solid rgba(112, 91, 58, .26); border-bottom: 0; padding-block: 1.125rem; }
+.alevia-v2 .hero-baseline > .alevia-caption { color: var(--alevia-text); letter-spacing: .04em; }
+.alevia-v2 .hero-video-actions { display: flex; align-items: center; gap: 3rem; }
+.alevia-v2 .hero-video-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: .75rem;
+  min-height: 48px;
+  padding: .5rem 0;
+  border: 0;
+  background: transparent;
+  color: var(--alevia-ink);
+  font-family: var(--alevia-font-body);
+  font-size: 12px;
+  cursor: pointer;
+  white-space: nowrap;
+}
+.alevia-v2 .hero-video-toggle:hover { color: var(--alevia-gold-ink); }
+.alevia-v2 .video-toggle-icon { position: relative; display: inline-block; width: 18px; height: 18px; flex: 0 0 18px; }
+.alevia-v2 .video-toggle-icon::before { content: ""; position: absolute; left: 5px; top: 3px; border-top: 6px solid transparent; border-bottom: 6px solid transparent; border-left: 8px solid currentColor; }
+.alevia-v2 .hero-video-toggle.is-playing .video-toggle-icon::before,
+.alevia-v2 .hero-video-toggle.is-playing .video-toggle-icon::after { content: ""; position: absolute; top: 3px; width: 2px; height: 12px; border: 0; background: currentColor; }
+.alevia-v2 .hero-video-toggle.is-playing .video-toggle-icon::before { left: 5px; }
+.alevia-v2 .hero-video-toggle.is-playing .video-toggle-icon::after { left: 11px; }
+.alevia-v2 .version-link { color: inherit; text-underline-offset: 3px; }
+
+@media (min-width: 960px) and (max-width: 1199px) {
+  .alevia-v2 .hero-copy { width: 37rem; }
+  .alevia-v2 .hero-title { font-size: 4.5rem; }
+}
+@media (max-width: 959px) {
+  .alevia-v2 .hero-video-content { min-height: clamp(740px, calc(100svh - 96px), 980px); }
+  .alevia-v2 .hero-copy { width: min(100%, 36rem); max-width: none; padding-block: 4rem; }
+  .alevia-v2 .hero-title { max-width: none; font-size: clamp(4rem, 8.8vw, 5.5rem); }
+  .alevia-v2 .hero-video-wash { background: linear-gradient(90deg, rgba(253, 251, 247, .93), rgba(253, 251, 247, .66) 60%, rgba(253, 251, 247, .2)); }
+  .alevia-v2 .hero-baseline { align-items: center; gap: 1rem; }
+  .alevia-v2 .hero-baseline > .alevia-caption { padding-top: 0; }
+  .alevia-v2 .hero-video-actions { gap: 1.5rem; }
+  .alevia-v2 .down-link { font-size: 12px; gap: 1rem; }
+}
+@media (max-width: 639px) {
+  .alevia-v2 .hero-video-content { min-height: max(780px, calc(100svh - 96px)); }
+  .alevia-v2 .hero-copy { width: 100%; padding-block: 3.25rem 6rem; }
+  .alevia-v2 .hero-title { font-size: clamp(3rem, 12.2vw, 4.5rem); }
+  .alevia-v2 .hero-intro { max-width: 29rem; }
+  .alevia-v2 .hero-video-poster, .alevia-v2 .hero-video { object-position: 61% center; }
+  .alevia-v2 .hero-video-wash { background: linear-gradient(180deg, rgba(253, 251, 247, .92) 0%, rgba(253, 251, 247, .88) 38%, rgba(253, 251, 247, .58) 65%, rgba(253, 251, 247, .12) 82%, rgba(253, 251, 247, .7) 100%); }
+  .alevia-v2 .hero-baseline { align-items: stretch; gap: .5rem; padding-block: 1rem; }
+  .alevia-v2 .hero-video-actions { flex-wrap: wrap; justify-content: space-between; gap: 0 1rem; }
+  .alevia-v2 .hero-video-actions .down-link { width: auto; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .alevia-v2 .hero-video { transition: none; }
+}
