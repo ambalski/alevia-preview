@@ -1,0 +1,223 @@
+/* ALEVIA starter styles. Requires fonts.css and tokens.css. No page or form logic. */
+.alevia,
+.alevia * {
+  box-sizing: border-box;
+}
+
+.alevia {
+  background: var(--alevia-bg);
+  color: var(--alevia-text);
+  font-family: var(--alevia-font-body);
+  font-size: var(--alevia-type-body);
+  font-weight: 400;
+  line-height: var(--alevia-leading-body);
+  font-kerning: normal;
+  font-synthesis: none;
+  overflow-wrap: break-word;
+}
+
+.alevia [hidden] { display: none !important; }
+.alevia :where(h1, h2, h3, p, figure) { margin: 0; }
+.alevia :where(img, video) { display: block; max-width: 100%; height: auto; }
+.alevia :where(button, input, textarea, select) { font: inherit; }
+.alevia :where(button, a, input, textarea, select, summary):focus-visible {
+  outline: var(--alevia-focus-width) solid var(--alevia-focus);
+  outline-offset: var(--alevia-focus-offset);
+}
+
+.alevia .alevia-container {
+  width: min(calc(100% - 2 * var(--alevia-gutter)), var(--alevia-container));
+  margin-inline: auto;
+}
+.alevia .alevia-section { padding-block: var(--alevia-section-space); }
+.alevia .alevia-section--surface { background: var(--alevia-surface); }
+.alevia .alevia-grid {
+  display: grid;
+  grid-template-columns: repeat(var(--alevia-grid-columns), minmax(0, 1fr));
+  gap: var(--alevia-grid-gap);
+}
+.alevia .alevia-grid > * { min-width: 0; }
+.alevia .alevia-stack > * + * { margin-block-start: var(--alevia-stack-gap, var(--alevia-space-6)); }
+.alevia .alevia-prose { max-width: var(--alevia-text-width); }
+.alevia .alevia-prose > * + * { margin-block-start: var(--alevia-space-4); }
+
+.alevia .alevia-display,
+.alevia .alevia-heading,
+.alevia .alevia-subheading {
+  font-family: var(--alevia-font-display);
+  color: var(--alevia-ink);
+  font-weight: 400;
+  letter-spacing: var(--alevia-tracking-heading);
+  text-wrap: balance;
+}
+.alevia .alevia-display { font-size: var(--alevia-type-hero); line-height: var(--alevia-leading-hero); }
+.alevia .alevia-heading { font-size: var(--alevia-type-h2); line-height: var(--alevia-leading-heading); }
+.alevia .alevia-subheading { font-size: var(--alevia-type-h3); line-height: var(--alevia-leading-subheading); font-weight: 500; }
+.alevia .alevia-lead { max-width: var(--alevia-lead-width); font-size: var(--alevia-type-lead); }
+.alevia .alevia-caption { color: var(--alevia-muted); font-size: var(--alevia-type-small); line-height: var(--alevia-leading-small); }
+.alevia .alevia-eyebrow {
+  color: var(--alevia-muted);
+  font-size: var(--alevia-type-eyebrow);
+  font-weight: 500;
+  letter-spacing: var(--alevia-tracking-eyebrow);
+  line-height: var(--alevia-leading-small);
+  text-transform: uppercase;
+}
+.alevia .alevia-link {
+  color: var(--alevia-gold-ink);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 4px;
+}
+.alevia .alevia-link:hover { color: var(--alevia-ink); }
+
+.alevia .alevia-header {
+  min-height: var(--alevia-header-height);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--alevia-space-6);
+}
+/* Temporary text mark: does not reproduce the supplied custom V. */
+.alevia .alevia-wordmark {
+  color: var(--alevia-ink);
+  font-family: var(--alevia-font-display);
+  font-size: 1.875rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  line-height: 1;
+  text-decoration: none;
+  white-space: nowrap;
+}
+.alevia .alevia-nav { display: none; align-items: center; gap: var(--alevia-space-6); }
+.alevia .alevia-nav a {
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--alevia-tap-size);
+  color: var(--alevia-ink);
+  font-size: var(--alevia-type-label);
+  text-decoration: none;
+}
+.alevia .alevia-nav a:hover { text-decoration: underline; text-underline-offset: 4px; }
+.alevia .alevia-menu-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: var(--alevia-tap-size);
+  min-height: var(--alevia-tap-size);
+  padding: var(--alevia-space-2);
+  color: var(--alevia-ink);
+  background: transparent;
+  border: 1px solid var(--alevia-cashmere);
+  border-radius: var(--alevia-radius-control);
+  cursor: pointer;
+}
+
+.alevia .alevia-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--alevia-space-3);
+  min-height: var(--alevia-control-height);
+  max-width: 100%;
+  padding: var(--alevia-space-4) 1.75rem;
+  border: 1px solid var(--alevia-action-bg);
+  border-radius: var(--alevia-radius-control);
+  background: var(--alevia-action-bg);
+  color: var(--alevia-action-text);
+  font-family: var(--alevia-font-body);
+  font-size: var(--alevia-type-label);
+  font-weight: 500;
+  line-height: var(--alevia-leading-label);
+  text-align: center;
+  text-decoration: none;
+  white-space: normal;
+  cursor: pointer;
+  transition: background-color var(--alevia-duration-fast) var(--alevia-ease), border-color var(--alevia-duration-fast) var(--alevia-ease);
+}
+.alevia .alevia-button:not(:disabled):not([aria-disabled="true"]):hover {
+  background: var(--alevia-action-hover);
+  border-color: var(--alevia-action-hover);
+}
+.alevia .alevia-button:not(:disabled):not([aria-disabled="true"]):active {
+  background: var(--alevia-action-active);
+  border-color: var(--alevia-action-active);
+}
+.alevia .alevia-button--secondary {
+  background: transparent;
+  border-color: var(--alevia-cashmere);
+  color: var(--alevia-ink);
+}
+.alevia .alevia-button--secondary:not(:disabled):not([aria-disabled="true"]):hover { background: var(--alevia-surface); border-color: var(--alevia-ink); }
+.alevia .alevia-button--secondary:not(:disabled):not([aria-disabled="true"]):active { background: var(--alevia-stone); }
+.alevia .alevia-button:is(:disabled, [aria-disabled="true"]) {
+  background: var(--alevia-stone);
+  border-color: var(--alevia-cashmere);
+  color: var(--alevia-muted);
+  cursor: not-allowed;
+}
+/* aria-disabled on links also requires JS/markup to prevent navigation. */
+
+.alevia .alevia-rituals { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--alevia-space-10); }
+.alevia .alevia-ritual { min-width: 0; border-top: 1px solid var(--alevia-line); padding-top: var(--alevia-space-6); }
+.alevia .alevia-ritual-number { color: var(--alevia-cashmere); font-family: var(--alevia-font-display); font-size: 2rem; line-height: 1.2; }
+.alevia .alevia-ritual-list { margin: var(--alevia-space-6) 0 0; padding: 0; list-style: none; }
+.alevia .alevia-ritual-list > li + li { margin-top: var(--alevia-space-6); }
+.alevia .alevia-rule { width: 100%; height: 1px; border: 0; margin-block: var(--alevia-space-8); background: var(--alevia-line); }
+.alevia .alevia-gold-rule { width: 3rem; height: 1px; background: var(--alevia-gold); }
+.alevia .alevia-media { overflow: hidden; border-radius: var(--alevia-radius-media); background: var(--alevia-stone); }
+.alevia .alevia-media--portrait { aspect-ratio: 4 / 5; }
+.alevia .alevia-media--portrait > :is(img, video) { width: 100%; height: 100%; object-fit: cover; }
+
+.alevia .alevia-form { display: grid; gap: var(--alevia-space-6); max-width: 32rem; }
+.alevia .alevia-field { display: grid; gap: var(--alevia-space-2); min-width: 0; }
+.alevia .alevia-field-label { color: var(--alevia-ink); font-size: var(--alevia-type-label); font-weight: 500; }
+.alevia .alevia-input {
+  display: block;
+  width: 100%;
+  min-width: 0;
+  min-height: var(--alevia-control-height);
+  border: 1px solid var(--alevia-field-border);
+  border-radius: var(--alevia-radius-control);
+  padding: var(--alevia-space-4);
+  background: var(--alevia-bg);
+  color: var(--alevia-ink);
+  font-size: 1rem;
+  line-height: 1.5;
+  transition: border-color var(--alevia-duration-fast) var(--alevia-ease);
+}
+.alevia .alevia-input::placeholder { color: var(--alevia-muted); opacity: 1; }
+.alevia .alevia-input:hover { border-color: var(--alevia-ink); }
+.alevia .alevia-input[aria-invalid="true"] { border-color: var(--alevia-error); }
+.alevia .alevia-field-message { font-size: var(--alevia-type-small); line-height: var(--alevia-leading-small); color: var(--alevia-muted); }
+.alevia .alevia-field-message--error { color: var(--alevia-error); }
+.alevia .alevia-field-message--success { color: var(--alevia-success); }
+.alevia .alevia-sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+
+@media (min-width: 960px) {
+  .alevia .alevia-wordmark { font-size: 2.375rem; }
+  .alevia .alevia-nav { display: flex; }
+  .alevia .alevia-menu-toggle { display: none; }
+  .alevia .alevia-rituals { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--alevia-grid-gap); }
+}
+@media (max-width: 639px) {
+  .alevia .alevia-button { width: 100%; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .alevia,
+  .alevia * {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
+}

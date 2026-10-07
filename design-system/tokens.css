@@ -1,0 +1,110 @@
+/* ALEVIA 0.1 — proposed design values, 2026-10-07. Scope: .alevia. */
+.alevia {
+  color-scheme: light;
+
+  --alevia-bg: #fdfbf7;
+  --alevia-surface: #f5f0e8;
+  --alevia-stone: #e8ded0;
+  --alevia-ink: #3f372f;
+  --alevia-text: #51473d;
+  --alevia-muted: #716456;
+  --alevia-cashmere: #8c8275;
+  --alevia-gold: #a58a5b;
+  --alevia-gold-ink: #78613d;
+  --alevia-line: #ddd2c3;
+  --alevia-error: #9b443c;
+  --alevia-success: #496653;
+
+  --alevia-action-bg: var(--alevia-ink);
+  --alevia-action-hover: #51473d;
+  --alevia-action-active: #302a24;
+  --alevia-action-text: var(--alevia-bg);
+  --alevia-field-border: var(--alevia-cashmere);
+  --alevia-focus: var(--alevia-gold-ink);
+
+  --alevia-font-display: "Cormorant Garamond", Georgia, "Times New Roman", serif;
+  --alevia-font-body: "Manrope", Arial, sans-serif;
+  --alevia-type-hero: clamp(3rem, 1.75rem + 5vw, 6rem);
+  --alevia-type-h2: clamp(2.375rem, 1.75rem + 2.5vw, 4rem);
+  --alevia-type-h3: clamp(1.875rem, 1.7rem + 0.7vw, 2.25rem);
+  --alevia-type-lead: clamp(1.125rem, 1.07rem + 0.23vw, 1.25rem);
+  --alevia-type-body: clamp(1rem, 0.945rem + 0.23vw, 1.125rem);
+  --alevia-type-label: 0.875rem;
+  --alevia-type-small: 0.875rem;
+  --alevia-type-eyebrow: 0.75rem;
+  --alevia-leading-hero: 1.04;
+  --alevia-leading-heading: 1.1;
+  --alevia-leading-subheading: 1.18;
+  --alevia-leading-body: 1.65;
+  --alevia-leading-label: 1.45;
+  --alevia-leading-small: 1.5;
+  --alevia-tracking-heading: -0.02em;
+  --alevia-tracking-eyebrow: 0.14em;
+
+  --alevia-space-1: 0.25rem;
+  --alevia-space-2: 0.5rem;
+  --alevia-space-3: 0.75rem;
+  --alevia-space-4: 1rem;
+  --alevia-space-6: 1.5rem;
+  --alevia-space-8: 2rem;
+  --alevia-space-10: 2.5rem;
+  --alevia-space-12: 3rem;
+  --alevia-space-16: 4rem;
+  --alevia-space-20: 5rem;
+  --alevia-space-24: 6rem;
+  --alevia-space-30: 7.5rem;
+
+  --alevia-container: 80rem;
+  --alevia-gutter: 1.25rem;
+  --alevia-grid-columns: 4;
+  --alevia-grid-gap: 1rem;
+  --alevia-section-space: var(--alevia-space-16);
+  --alevia-heading-gap: var(--alevia-space-6);
+  --alevia-text-width: 62ch;
+  --alevia-lead-width: 44ch;
+  --alevia-header-height: 4.5rem;
+  --alevia-control-height: 3.5rem;
+  --alevia-tap-size: 3rem;
+  --alevia-radius-control: 2px;
+  --alevia-radius-media: 4px;
+  --alevia-border-width: 1px;
+  --alevia-focus-width: 3px;
+  --alevia-focus-offset: 4px;
+  --alevia-duration-fast: 180ms;
+  --alevia-duration-reveal: 320ms;
+  --alevia-ease: cubic-bezier(0.2, 0.6, 0.3, 1);
+}
+
+@media (min-width: 640px) {
+  .alevia {
+    --alevia-gutter: 2rem;
+    --alevia-grid-columns: 8;
+    --alevia-grid-gap: 1.5rem;
+    --alevia-section-space: var(--alevia-space-20);
+    --alevia-heading-gap: var(--alevia-space-8);
+  }
+}
+
+@media (min-width: 960px) {
+  .alevia {
+    --alevia-gutter: 2.5rem;
+    --alevia-grid-columns: 12;
+    --alevia-section-space: var(--alevia-space-24);
+    --alevia-heading-gap: var(--alevia-space-10);
+    --alevia-header-height: 5.5rem;
+  }
+}
+
+@media (min-width: 1200px) {
+  .alevia {
+    --alevia-gutter: 4rem;
+    --alevia-section-space: var(--alevia-space-30);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .alevia {
+    --alevia-duration-fast: 0ms;
+    --alevia-duration-reveal: 0ms;
+  }
+}

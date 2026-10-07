@@ -1,0 +1,263 @@
+/* ALEVIA landing v1. Page composition; shared design-system files stay unchanged. */
+html { scroll-behavior: smooth; scroll-padding-top: 2rem; }
+body.alevia {
+  margin: 0;
+  position: relative;
+  isolation: isolate;
+  --alevia-texture: url("images/warm-material-texture.webp");
+  --alevia-texture-size: 896px;
+  --alevia-texture-opacity: .42;
+  --alevia-muted: #6b5e50;
+  --alevia-gold-ink: #705b3a;
+}
+/* Static material underlays: text and photographs are painted above the grain. */
+.alevia :is(.site-header, .rituals-section, .visit-section, .alevia-button),
+.alevia .is-menu-open .alevia-nav { isolation: isolate; }
+.alevia :is(.rituals-section, .visit-section, .alevia-button) { position: relative; }
+body.alevia::before,
+.alevia :is(.site-header, .rituals-section, .visit-section, .alevia-button)::before,
+.alevia .is-menu-open .alevia-nav::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: inherit;
+  background-image: var(--alevia-texture);
+  background-size: var(--alevia-texture-size) var(--alevia-texture-size);
+  background-repeat: repeat;
+  mix-blend-mode: multiply;
+  opacity: var(--alevia-texture-opacity);
+  pointer-events: none;
+}
+.alevia :is(.rituals-section, .visit-section) { --alevia-texture-opacity: .32; }
+.alevia .alevia-button { --alevia-texture-opacity: .2; }
+.alevia ::selection { color: var(--alevia-ink); background: var(--alevia-stone); }
+.alevia :where(h4, blockquote) { margin: 0; }
+.alevia main:focus { outline: none; }
+.alevia .skip-link {
+  position: fixed; z-index: 20; left: 1rem; top: 1rem;
+  padding: 1rem 1.5rem; background: var(--alevia-ink); color: var(--alevia-bg);
+  transform: translateY(-180%);
+}
+.alevia .skip-link:focus { transform: translateY(0); }
+.alevia .arrow { display: inline-block; flex: 0 0 22px; width: 22px; height: 12px; position: relative; }
+.alevia .arrow::before { content: ""; position: absolute; width: 21px; height: 1px; background: currentColor; top: 5px; left: 0; }
+.alevia .arrow::after { content: ""; position: absolute; width: 8px; height: 8px; border-top: 1px solid currentColor; border-right: 1px solid currentColor; transform: rotate(45deg); top: 1px; right: 1px; }
+.alevia .arrow--diagonal { transform: rotate(-45deg); }
+.alevia .arrow--down { transform: rotate(90deg); }
+.alevia .arrow--up { transform: rotate(-90deg); }
+
+/* Header and progressively enhanced mobile disclosure. */
+.alevia .site-header { border-bottom: 1px solid var(--alevia-line); position: relative; z-index: 5; background: var(--alevia-bg); }
+.alevia .site-header .alevia-header { min-height: 112px; padding-block: 12px; }
+.alevia .alevia-wordmark { display: inline-flex; align-items: center; min-height: 48px; width: 224px; min-width: 0; max-width: 100%; flex: 0 0 auto; line-height: 0; }
+.alevia .brand-logo { display: block; width: 100%; height: auto; }
+.alevia .header-booking { display: inline-flex; align-items: center; gap: 1rem; min-height: 48px; color: var(--alevia-ink); text-decoration: none; font-size: var(--alevia-type-label); }
+.alevia .header-booking span:first-child { border-bottom: 1px solid var(--alevia-gold); padding-block: 4px; }
+.alevia .header-booking:hover { color: var(--alevia-gold-ink); }
+.alevia .alevia-menu-toggle { border: 0; }
+.alevia .menu-lines { display: grid; gap: 7px; width: 24px; }
+.alevia .menu-lines > span { width: 24px; height: 1px; background: currentColor; transition: transform var(--alevia-duration-fast); }
+.alevia .is-menu-open .menu-lines > span:first-child { transform: translateY(4px) rotate(45deg); }
+.alevia .is-menu-open .menu-lines > span:last-child { transform: translateY(-4px) rotate(-45deg); }
+
+/* First screen. */
+.alevia .hero { padding-top: 4rem; }
+.alevia .hero-composition { display: grid; grid-template-columns: minmax(0, 1.14fr) minmax(0, 1fr); gap: clamp(3rem, 5.56vw, 5rem); align-items: center; }
+.alevia .hero-copy { padding-block: 1rem 2.5rem; min-width: 0; }
+.alevia .hero-eyebrow { display: flex; gap: 1rem; align-items: center; margin-bottom: 2rem; }
+.alevia .eyebrow-line { height: 1px; width: 32px; flex: 0 0 32px; background: var(--alevia-gold); }
+.alevia .hero-title { margin-bottom: 2rem; }
+.alevia .hero-title > span { display: block; }
+.alevia .hero-title > span:last-child { color: var(--alevia-gold-ink); }
+.alevia .hero-intro { max-width: 31rem; }
+.alevia .hero-description { margin-top: 1rem; font-size: var(--alevia-type-body); color: var(--alevia-muted); }
+.alevia .hero-booking { margin-top: 2.5rem; gap: 1.5rem; }
+.alevia .hero-figure { min-width: 0; padding: 0.75rem 0.75rem 0 0; }
+.alevia .hero-image-frame { position: relative; z-index: 0; }
+.alevia .hero-image-frame::before { content: ""; position: absolute; inset: -12px -12px 12px 12px; border: 1px solid var(--alevia-line); z-index: -1; }
+.alevia .hero-image-frame .alevia-media { border-radius: 2px; }
+.alevia .hero-image-frame img { animation: image-arrive var(--alevia-duration-reveal) var(--alevia-ease) both; }
+.alevia .hero-image-caption { display: flex; gap: 1rem; justify-content: space-between; padding-top: 1rem; color: var(--alevia-muted); font-size: 12px; letter-spacing: .06em; }
+.alevia .hero-image-caption > span:last-child { letter-spacing: .16em; }
+.alevia .hero-baseline { display: flex; align-items: center; justify-content: space-between; gap: 1.5rem; padding-block: 2.5rem; border-bottom: 1px solid var(--alevia-line); }
+.alevia .down-link { display: inline-flex; align-items: center; gap: 1.5rem; min-height: 48px; color: var(--alevia-muted); font-size: 14px; text-decoration: none; }
+.alevia .down-link:hover { color: var(--alevia-ink); }
+
+/* Common editorial section rhythm. */
+.alevia .section-kicker { display: flex; align-items: center; justify-content: space-between; gap: 1.5rem; margin-bottom: 2.5rem; }
+.alevia .section-index { color: var(--alevia-muted); font-size: 12px; letter-spacing: .12em; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.alevia .philosophy-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 7.5rem; }
+.alevia .philosophy-heading h2 { max-width: 9.5em; }
+.alevia .philosophy-signature { display: flex; align-items: center; gap: 1.5rem; margin-top: 3rem; color: var(--alevia-muted); font-family: var(--alevia-font-display); font-size: 24px; letter-spacing: .14em; }
+.alevia .philosophy-signature img { width: 152px; height: auto; }
+.alevia .philosophy-signature .alevia-gold-rule { flex: 0 0 3rem; }
+.alevia .philosophy-copy { padding-top: .5rem; }
+.alevia .philosophy-copy p { max-width: var(--alevia-text-width); }
+.alevia .philosophy-copy blockquote { margin-block: 2rem; padding-left: 1.5rem; border-left: 1px solid var(--alevia-gold); color: var(--alevia-gold-ink); font-family: var(--alevia-font-display); font-size: clamp(1.875rem, 2.5vw, 2.25rem); line-height: 1.2; }
+
+/* Three equally weighted directions with six complete programs. */
+.alevia .rituals-section { background: var(--alevia-surface); }
+.alevia .rituals-section > .alevia-container > h2 { margin-bottom: 3rem; }
+.alevia .alevia-rituals { gap: 2.5rem; }
+.alevia .alevia-ritual { display: grid; grid-template-rows: subgrid; grid-row: span 3; gap: 0; border-top-color: var(--alevia-cashmere); padding-top: 1.5rem; }
+.alevia .ritual-heading { padding-bottom: 2rem; }
+.alevia .alevia-ritual-number { display: block; margin-bottom: 1.5rem; }
+.alevia .ritual-heading h3 { margin-bottom: .75rem; }
+.alevia .ritual-category { color: var(--alevia-muted); font-size: 14px; }
+.alevia .alevia-ritual-list { display: contents; }
+.alevia .alevia-ritual-list > li { border-top: 1px solid var(--alevia-line); padding-block: 1.5rem 2rem; list-style: none; }
+.alevia .alevia-ritual-list > li + li { margin-top: 0; padding-bottom: .5rem; }
+.alevia .program-type { font-size: 12px; color: var(--alevia-muted); margin-bottom: .5rem; }
+.alevia .program-name { font-family: var(--alevia-font-display); color: var(--alevia-ink); font-size: clamp(1.625rem, 2vw, 1.875rem); line-height: 1.15; font-weight: 500; }
+.alevia .program-translation { color: var(--alevia-gold-ink); font-size: 12px; margin-top: .5rem; letter-spacing: .03em; }
+.alevia .program-description { font-size: 16px; margin-top: 1rem; line-height: 1.7; }
+.alevia .rituals-footer { display: flex; justify-content: center; margin-top: 3rem; }
+.alevia .text-action { display: inline-flex; align-items: center; gap: 1rem; min-height: 48px; font-size: 14px; }
+
+/* Service. */
+.alevia .service-grid { display: grid; grid-template-columns: minmax(0, .95fr) minmax(0, 1.1fr); gap: 7.5rem; }
+.alevia .service-intro h2 { max-width: 8em; }
+.alevia .service-detail { margin-top: 3rem; max-width: 25rem; }
+.alevia .service-detail img { width: 100%; aspect-ratio: 3 / 2; object-fit: cover; border-radius: 2px; }
+.alevia .service-detail figcaption { margin-top: 1rem; }
+.alevia .service-item { display: grid; grid-template-columns: 2rem minmax(0, 1fr); gap: 1.5rem; padding-block: 2rem; border-top: 1px solid var(--alevia-line); }
+.alevia .service-item:first-child { padding-top: 0; border-top: 0; }
+.alevia .service-item:last-child { padding-bottom: 0; }
+.alevia .service-marker { color: var(--alevia-gold-ink); font-family: var(--alevia-font-display); font-size: 24px; line-height: 1.8; }
+.alevia .service-item h3 { font-size: clamp(1.875rem, 2.5vw, 2.125rem); }
+.alevia .service-item p { margin-top: 1rem; font-size: var(--alevia-type-body); }
+
+/* Private visit: intentionally disconnected demo form. */
+.alevia .visit-section { background: var(--alevia-surface); }
+.alevia .visit-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 7.5rem; align-items: start; }
+.alevia .visit-copy > p:first-of-type { margin-top: 2rem; max-width: 48ch; }
+.alevia .visit-location { display: flex; align-items: center; gap: .75rem; margin-top: 2rem; font-size: 14px; color: var(--alevia-muted); }
+.alevia .location-mark { display: inline-block; width: 9px; height: 9px; flex: 0 0 9px; border: 1px solid var(--alevia-gold-ink); transform: rotate(45deg); }
+.alevia .visit-form-panel { border-top: 1px solid var(--alevia-cashmere); padding-top: 2rem; }
+.alevia .form-eyebrow { margin-bottom: 2rem; }
+.alevia .alevia-form { max-width: none; gap: 1.5rem; }
+.alevia .alevia-input { background: transparent; }
+.alevia .visit-submit { justify-content: space-between; gap: 1rem; }
+.alevia .form-note { max-width: 42ch; }
+.alevia .form-status { border-top: 1px solid var(--alevia-line); padding-top: 1rem; color: var(--alevia-ink); }
+
+/* Footer. */
+.alevia .site-footer { padding-top: 3rem; }
+.alevia .footer-main { display: grid; grid-template-columns: 1fr 1fr auto; align-items: center; gap: 2rem; padding-bottom: 2.5rem; }
+.alevia .footer-wordmark { width: min(100%, 280px); }
+.alevia .back-to-top { display: inline-flex; align-items: center; gap: 1rem; min-height: 48px; font-size: 14px; color: var(--alevia-ink); text-decoration: none; }
+.alevia .back-to-top:hover { color: var(--alevia-gold-ink); }
+.alevia .footer-meta { display: flex; justify-content: space-between; gap: 1rem; border-top: 1px solid var(--alevia-line); padding-block: 1.5rem; font-size: 12px; color: var(--alevia-muted); }
+
+@keyframes image-arrive { from { opacity: .8; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+
+@media (min-width: 960px) and (max-width: 1199px) {
+  .alevia .alevia-nav { gap: 1rem; }
+  .alevia .alevia-header { gap: 1.5rem; }
+  .alevia .header-booking { gap: .5rem; }
+  .alevia .hero-title { font-size: clamp(3.5rem, 6.65vw, 5rem); }
+  .alevia .hero-composition { gap: 2.5rem; }
+  .alevia .hero-copy { padding-top: 0; }
+  .alevia .hero-eyebrow { font-size: 11px; gap: .75rem; }
+  .alevia .philosophy-grid, .alevia .service-grid, .alevia .visit-grid { gap: 4rem; }
+  .alevia .alevia-rituals { gap: 1.5rem; }
+  .alevia .alevia-subheading { font-size: 32px; }
+}
+
+@media (max-width: 959px) {
+  .alevia .alevia-header { flex-wrap: wrap; }
+  .alevia .site-header .alevia-header { min-height: 96px; padding-block: 10px; }
+  .alevia .alevia-wordmark { width: 200px; }
+  .alevia .header-booking { display: none; }
+  .alevia .alevia-nav { order: 3; width: 100%; flex-direction: column; align-items: stretch; gap: 0; }
+  .alevia:not(.has-js) .alevia-nav { display: flex; padding-bottom: 1rem; }
+  .alevia .is-menu-open .alevia-nav { display: flex; position: absolute; top: 100%; left: 0; right: 0; padding: 1rem var(--alevia-gutter) 1.5rem; background: var(--alevia-bg); border-bottom: 1px solid var(--alevia-line); }
+  .alevia .alevia-nav a { min-height: 52px; }
+  .alevia .hero { padding-top: 3rem; }
+  .alevia .hero-composition { grid-template-columns: minmax(0, 1fr); gap: 3rem; }
+  .alevia .hero-copy { max-width: 39rem; padding-block: 0; }
+  .alevia .hero-title { max-width: 9em; }
+  .alevia .hero-intro { max-width: 33rem; }
+  .alevia .hero-figure { width: 72%; justify-self: end; }
+  .alevia .hero-baseline { align-items: flex-start; padding-block: 2rem; }
+  .alevia .hero-baseline > .alevia-caption { max-width: 24rem; padding-top: .75rem; }
+  .alevia .philosophy-grid, .alevia .service-grid, .alevia .visit-grid { gap: 3rem; }
+  .alevia .philosophy-grid { grid-template-columns: minmax(0, .85fr) minmax(0, 1fr); }
+  .alevia .philosophy-signature { margin-top: 2rem; }
+  .alevia .alevia-rituals { grid-template-columns: minmax(0, 1fr); gap: 3rem; }
+  .alevia .alevia-ritual { grid-template-rows: auto; grid-row: auto; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); column-gap: 2rem; }
+  .alevia .ritual-heading { grid-column: 1 / -1; display: grid; grid-template-columns: 3rem minmax(0, 1fr); column-gap: 1.5rem; align-items: start; padding-bottom: 1.5rem; }
+  .alevia .alevia-ritual-number { grid-row: span 2; margin: 0; }
+  .alevia .ritual-heading h3 { margin-bottom: .5rem; }
+  .alevia .ritual-category { grid-column: 2; }
+  .alevia .alevia-ritual-list > li { padding-bottom: 0; }
+  .alevia .service-grid { grid-template-columns: minmax(0, .8fr) minmax(0, 1.2fr); gap: 3rem; }
+  .alevia .service-item { grid-template-columns: minmax(0, 1fr); gap: .5rem; }
+  .alevia .service-marker { font-size: 24px; line-height: 1.2; }
+  .alevia .visit-grid { grid-template-columns: minmax(0, 1fr); }
+  .alevia .visit-copy > p:first-of-type { max-width: 58ch; }
+  .alevia .visit-form-panel { width: 100%; max-width: 32rem; justify-self: end; }
+}
+
+@media (max-width: 639px) {
+  .alevia .alevia-wordmark { width: 192px; }
+  .alevia .hero { padding-top: 2.5rem; }
+  .alevia .hero-eyebrow { font-size: 10px; letter-spacing: .13em; margin-bottom: 1.5rem; gap: .75rem; }
+  .alevia .eyebrow-line { width: 24px; flex-basis: 24px; }
+  .alevia .hero-title { margin-bottom: 1.5rem; font-size: clamp(3rem, 12.2vw, 4.5rem); }
+  .alevia .hero-intro .alevia-lead { font-size: 18px; }
+  .alevia .hero-description { font-size: 16px; }
+  .alevia .hero-booking { margin-top: 2rem; gap: 1rem; padding-inline: 1.25rem; }
+  .alevia .hero-composition { gap: 2.5rem; }
+  .alevia .hero-figure { width: 100%; padding-top: .5rem; padding-right: .5rem; }
+  .alevia .hero-image-frame::before { inset: -8px -8px 8px 8px; }
+  .alevia .hero-image-caption { gap: .5rem; font-size: 11px; padding-top: .75rem; }
+  .alevia .hero-baseline { flex-direction: column; gap: .75rem; padding-block: 1.5rem; }
+  .alevia .hero-baseline > .alevia-caption { padding-top: 0; font-size: 12px; }
+  .alevia .down-link { width: 100%; justify-content: space-between; font-size: 12px; }
+  .alevia .section-kicker { margin-bottom: 1.5rem; }
+  .alevia .section-kicker .alevia-eyebrow { font-size: 11px; }
+  .alevia .section-index { font-size: 11px; }
+  .alevia .philosophy-grid, .alevia .service-grid { grid-template-columns: minmax(0, 1fr); gap: 2rem; }
+  .alevia .philosophy-heading h2 { max-width: 9.5em; }
+  .alevia .philosophy-signature { display: none; }
+  .alevia .philosophy-copy { padding-top: 0; }
+  .alevia .philosophy-copy blockquote { padding-left: 1.25rem; margin-block: 1.5rem; font-size: 30px; }
+  .alevia .rituals-section > .alevia-container > h2 { margin-bottom: 2rem; }
+  .alevia .alevia-rituals { gap: 2.5rem; }
+  .alevia .alevia-ritual { grid-template-columns: minmax(0, 1fr); padding-top: 1.5rem; }
+  .alevia .ritual-heading { column-gap: .75rem; grid-template-columns: 2.5rem minmax(0, 1fr); }
+  .alevia .ritual-heading h3 { font-size: 30px; }
+  .alevia .alevia-ritual-number { font-size: 28px; }
+  .alevia .ritual-category { font-size: 12px; }
+  .alevia .alevia-ritual-list > li { padding-bottom: 1.5rem; }
+  .alevia .alevia-ritual-list > li + li { padding-bottom: 0; }
+  .alevia .program-name { font-size: 28px; }
+  .alevia .rituals-footer { margin-top: 2rem; justify-content: flex-start; }
+  .alevia .service-intro h2 { max-width: none; }
+  .alevia .service-detail { margin-top: 2rem; max-width: none; }
+  .alevia .service-detail figcaption { display: none; }
+  .alevia .service-item { grid-template-columns: 1.5rem minmax(0, 1fr); gap: 1rem; padding-block: 1.5rem; }
+  .alevia .service-marker { font-size: 20px; line-height: 1.8; }
+  .alevia .service-item h3 { font-size: 30px; }
+  .alevia .service-item p { margin-top: .75rem; }
+  .alevia .visit-grid { gap: 2rem; }
+  .alevia .visit-copy > p:first-of-type { margin-top: 1.5rem; }
+  .alevia .visit-location { margin-top: 1.5rem; font-size: 12px; }
+  .alevia .visit-form-panel { padding-top: 1.5rem; }
+  .alevia .form-eyebrow { margin-bottom: 1.5rem; }
+  .alevia .visit-submit { padding-inline: 1.25rem; text-align: left; }
+  .alevia .site-footer { padding-top: 2.5rem; }
+  .alevia .footer-main { grid-template-columns: minmax(0, 1fr) auto; gap: 1.5rem; padding-bottom: 2rem; }
+  .alevia .footer-wordmark { width: min(100%, 208px); }
+  .alevia .footer-main > p { grid-row: 2; grid-column: 1 / -1; font-size: 12px; }
+  .alevia .back-to-top { font-size: 12px; gap: .5rem; }
+  .alevia .footer-meta { flex-direction: column; gap: .5rem; font-size: 11px; }
+}
+
+@supports not (grid-template-rows: subgrid) {
+  .alevia .alevia-ritual { display: block; }
+  .alevia .alevia-ritual-list { display: block; margin-top: 0; }
+}
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
